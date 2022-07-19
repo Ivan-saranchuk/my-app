@@ -1,0 +1,26 @@
+.nav{
+    grid-area:n;
+    background-color: blueviolet;
+    padding: 20px;
+  }
+  .item a {
+      color: white;
+      text-decoration: none;
+  }
+
+  .item a.active {color: gold;}
+
+  .friends li {
+    list-style-type: none; /* Убираем маркеры */
+  }
+
+  .friends ul {
+    margin-left: 0; /* Отступ слева в браузере IE и Opera */
+    padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+  }
+
+    .friends img {
+    width: 30px;
+    height: 30px;
+    float: left;
+  }
