@@ -14,7 +14,6 @@ const MyPosts = (props) => {
 
 
    let addPost = () => {
-      // props.dispatch({type: 'ADD-POST'});
       props.dispatch(addPostActionCreator());
    }
    
