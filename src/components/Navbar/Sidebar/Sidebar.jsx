@@ -3,8 +3,7 @@ import s from './Sidebar.module.css';
 import { NavLink } from "react-router-dom";
 
 const Sidebar = (props) => {
-
-    
+   
     
    
     return <div><div className={s.item}>

@@ -6,10 +6,9 @@ import Sidebar from "./Sidebar/Sidebar";
 
 
 const Navbar = (props) => {
-console.log(props);
+ 
 
-
- let SidebarItem = props.state.menu.map(d => <Sidebar link={d.link} title={d.title} />);
+ let SidebarItem = props.state.sidebarReducer.menu.map(d => <Sidebar link={d.link} title={d.title} />);
 
 
 
