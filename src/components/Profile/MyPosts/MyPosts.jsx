@@ -6,21 +6,26 @@ import { updateNewPostTextActionCreator } from "../../../redux/store";
 
 
 const MyPosts = (props) => {
- 
 
-    let postsElements = props.state.profileReducer.messages.map( p => <Post message={p.message} likesCount = {p.likesCount}  />)
-    let newPostElement = props.state.profileReducer.newMessageBody;
+   debugger;
+
+   let state = props.profileReducer;
+
+    let postsElements = state.messages.map( p => <Post message={p.message} likesCount = {p.likesCount}  />)
+    let newPostElement = state.newMessageBody;
 
 
    let addPost = () => {
-      
-    props.dispatch(addPostActionCreator());
+      props.addPost();
+   //  props.dispatch(addPostActionCreator());
    }
    
 
    let onPostChange = (e) => {
       let newPost = e.target.value;
-     props.dispatch(updateNewPostTextActionCreator(newPost));
+      props.updateNewPostText(newPost);
+   //    let newPost = e.target.value;
+   //   props.dispatch(updateNewPostTextActionCreator(newPost));
    }
    
    return (
