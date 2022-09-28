@@ -3,24 +3,31 @@ import React from "react";
 import s from './Navbar.module.css';
 import Friends from "./Friends/Friends";
 import Sidebar from "./Sidebar/Sidebar";
+import StoreContext from "../../redux/StoreContext";
 
 
-const Navbar = (props) => {
+const Navbar = () => {
+
+  return (
+    <StoreContext.Consumer>
+      {
+        (store) => {
+          
+          let SidebarItem = store.sidebarReducer.menu.map(d => <Sidebar link={d.link} title={d.title} />);
+
+        return  {SidebarItem}
+           
+        
+        
+         
+        }
+
+      }
+  
+   </StoreContext.Consumer>
+  )
+  
  
-
- let SidebarItem = props.state.sidebarReducer.menu.map(d => <Sidebar link={d.link} title={d.title} />);
-
-
-
-
-  return <nav className={s.nav}>
-
-
-   {SidebarItem}
-    
-  <Friends />
-
-  </nav>
 
 
 }

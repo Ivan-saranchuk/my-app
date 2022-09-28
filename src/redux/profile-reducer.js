@@ -19,8 +19,8 @@ let initialState = {
 
 const profileReducer = (state = initialState, action) => {
 
-
-  if (action.type === ADD_POST) {
+switch(action.type){
+  case ADD_POST:
     let newPost = {
       id: 5,
       message: state.newMessageBody,
@@ -29,16 +29,25 @@ const profileReducer = (state = initialState, action) => {
 
     state.messages.push(newPost);
     state.newMessageBody = ' ';
-   
+    return state;
 
-  } else if (action.type === UPDATE_NEW_POST_TEXT) {
-    state.newMessageBody = action.newPost;//action.newText
-    
+    case UPDATE_NEW_POST_TEXT:
+      state.newMessageBody = action.newPost;
+      return state;
 
-  }
-
-  return state;
+      default:
+        return state;
 }
+}
+
+
+export const addPostActionCreator = () => ({ type: ADD_POST })
+
+export const updateNewPostTextActionCreator = (text) =>
+  ({ type: UPDATE_NEW_POST_TEXT, newPost: text })
+
+
+
 
 
 export default profileReducer;

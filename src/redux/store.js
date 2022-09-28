@@ -64,27 +64,21 @@ let store = {
     this._callSubscriber = observer;
   },
 
-  dispatch(action) {
-    this._state.profilePage = profileReducer(this._state.profilePage, action);
-    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
-    this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+  // dispatch(action) {
+  //   this._state.profilePage = profileReducer(this._state.profilePage, action);
+  //   this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+  //   this._state.sidebar = sidebarReducer(this._state.sidebar, action);
 
-    this._callSubscriber(this._state);
+  //   this._callSubscriber(this._state);
 
-  }
+  // }
 }
 
 
-export const addPostActionCreator = () => ({ type: ADD_POST })
-
-export const updateNewPostTextActionCreator = (text) =>
-  ({ type: UPDATE_NEW_POST_TEXT, newPost: text })
 
 
-export const sendMessageCreator = () => ({ type: SEND_MESSAGE })
 
-export const updateNewMessageBodyCreator = (body) =>
-  ({ type: UPDATE_NEW_MESSAGE_BODY, body: body })
+
 
 
 

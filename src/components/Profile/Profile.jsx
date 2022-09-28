@@ -13,7 +13,7 @@ const Profile = (props) => {
     return (
         <div>
             <ProfileInfo />
-            <MyPostsContainer state={props.state} dispatch={props.dispatch} />
+            <MyPostsContainer />
             {/* <MyPosts state={props.state} dispatch={props.dispatch} /> */}
             
         </div>
