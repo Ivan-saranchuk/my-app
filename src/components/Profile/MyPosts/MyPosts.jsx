@@ -7,12 +7,8 @@ import { updateNewPostTextActionCreator } from "../../../redux/store";
 
 const MyPosts = (props) => {
 
-   debugger;
-
-   let state = props.profileReducer;
-
-    let postsElements = state.messages.map( p => <Post message={p.message} likesCount = {p.likesCount}  />)
-    let newPostElement = state.newMessageBody;
+    let postsElements = props.path.messages.map( p => <Post message={p.message} likesCount = {p.likesCount}  />)
+    let newPostElement = props.path.newMessageBody;
 
 
    let addPost = () => {

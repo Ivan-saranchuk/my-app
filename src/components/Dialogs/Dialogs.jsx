@@ -4,19 +4,17 @@ import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import { updateNewMessageBodyCreator } from "../../redux/store";
 import { sendMessageCreator } from "../../redux/store";
+import {Navigate} from "react-router-dom";
 
 
 const Dialogs = (props) => {
 
- 
-    let state = props.dialogsReducer;
 
+let dialogElements = props.path.dialogs.map(d => <DialogItem name={d.name} id={d.id} /> );
 
-let dialogElements = state.dialogs.map(d => <DialogItem name={d.name} id={d.id} /> );
+let messagesElements = props.path.messages.map(m  => <Message message={m.message} />);
 
-let messagesElements = state.messages.map(m  => <Message message={m.message} />);
-
-let newMessageBody = state.newMessageBody;
+let newMessageBody = props.path.newMessageBody;
 
 let onSendMessageClick = () => {
     props.sendMessage();
@@ -25,10 +23,10 @@ let onSendMessageClick = () => {
 let onNewMessageChange = (e) => {
     let body = e.target.value;
     props.updateNewMessageBody(body);
-    // let body = e.target.value;
-    // props.dispatch(updateNewMessageBodyCreator(body));
+    
 }
 
+if(props.isAuth === false) return <Navigate to = {"/Login"} />
 
 
     return (

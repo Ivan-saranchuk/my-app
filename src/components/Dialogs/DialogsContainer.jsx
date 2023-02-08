@@ -5,43 +5,53 @@ import Message from './Message/Message';
 import { updateNewMessageBodyCreator } from "../../redux/dialogs-reducer";
 import { sendMessageCreator } from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
-import StoreContext from "../../redux/StoreContext";
+import store from "../../redux/redux-store";
+import { connect } from "react-redux";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 
-const DialogsContainer = () => {
+// const DialogsContainer = () => {
 
+//     return (
+//         <StoreContext.Consumer>
+//             {
+//             (state) => {
+//   ;
+//                 let onSendMessageClick = () => {
+//                     store.dispatch(sendMessageCreator());
+//                 }
 
+//                 let onNewMessageChange = (body) => {
+//                     store.dispatch(updateNewMessageBodyCreator(body));
+//                 }
 
-    return (
+//                 return <Dialogs updateNewMessageBody={onNewMessageChange} sendMessage={onSendMessageClick} path={state.dialogsReducer} />
+//             }
+// }
+//         </StoreContext.Consumer>
+//     )
+// }
 
-
-        <StoreContext.Consumer>
-            {
-                (store) => {
-
-
-                    let state = store.getState().dialogsReducer;
-
-
-                    let onSendMessageClick = () => {
-                        store.dispatch(sendMessageCreator());
-                    }
-
-                    let onNewMessageChange = (body) => {
-                        store.dispatch(updateNewMessageBodyCreator(body));
-                    }
-
-
-                    return <Dialogs updateNewMessageBody={onNewMessageChange} sendMessage={onSendMessageClick} dialogsReducer={state} />
-
-
-                }
-            }
-
-        </StoreContext.Consumer>
-    )
-
-
+let mapStateToProps = (state) => {
+    return {
+        path: state.dialogsReducer,
+        
+    }
+}
+let mapDispatchToProps = (dispatch) => {
+    return {
+        updateNewMessageBody: (body) => {
+            dispatch(updateNewMessageBodyCreator(body));
+        },
+        sendMessage: () => {
+            dispatch(sendMessageCreator());
+        }
+    }
 }
 
-export default DialogsContainer;
+export default compose(
+    withAuthRedirect,
+    connect(mapStateToProps, mapDispatchToProps)
+)(Dialogs);
+

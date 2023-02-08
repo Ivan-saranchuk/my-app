@@ -1,35 +1,35 @@
 import React from "react";
-
 import s from './Navbar.module.css';
-import Friends from "./Friends/Friends";
-import Sidebar from "./Sidebar/Sidebar";
-import StoreContext from "../../redux/StoreContext";
+import {NavLink} from "react-router-dom";
+import Friends from './Friends/Friends';
+// import StoreContext from "../../redux/StoreContext";
 
 
 const Navbar = () => {
 
-  return (
-    <StoreContext.Consumer>
-      {
-        (store) => {
-          
-          let SidebarItem = store.sidebarReducer.menu.map(d => <Sidebar link={d.link} title={d.title} />);
+return ( <nav className={s.nav}>
+    <div className={s.item}>
+      <NavLink to ="/profile" className={navData=>navData.isActive?s.active:s.item}>Profile</NavLink>
+    </div>
 
-        return  {SidebarItem}
-           
-        
-        
-         
-        }
+    <div className={s.item}>
+      <NavLink to= "/dialogs" className={navData=>navData.isActive?s.active:s.item}>Message</NavLink>
+    </div>
 
-      }
-  
-   </StoreContext.Consumer>
-  )
-  
- 
+    <div className={s.item}>
+      <NavLink to= "/users" className={navData=>navData.isActive?s.active:s.item}>Users</NavLink>
+    </div>
+
+    <Friends /> 
+  </nav>
+   
+
+
+)
 
 
 }
+
+
 
 export default Navbar;
