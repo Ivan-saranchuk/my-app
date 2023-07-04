@@ -5,6 +5,8 @@ import Message from './Message/Message';
 import { updateNewMessageBodyCreator } from "../../redux/store";
 import { sendMessageCreator } from "../../redux/store";
 import {Navigate} from "react-router-dom";
+import AddMessageForm from "./AddMessageForm";
+
 
 
 const Dialogs = (props) => {
@@ -16,14 +18,9 @@ let messagesElements = props.path.messages.map(m  => <Message message={m.message
 
 let newMessageBody = props.path.newMessageBody;
 
-let onSendMessageClick = () => {
-    props.sendMessage();
-}
 
-let onNewMessageChange = (e) => {
-    let body = e.target.value;
-    props.updateNewMessageBody(body);
-    
+let addNewMessage = (values) => {
+   props.sendMessage(values.newMessageBody)
 }
 
 if(props.isAuth === false) return <Navigate to = {"/Login"} />
@@ -38,14 +35,7 @@ if(props.isAuth === false) return <Navigate to = {"/Login"} />
 
             <div className={s.messages}>
                 <div>{messagesElements}</div>
-                <div>
-                    <div><textarea 
-                        value={newMessageBody}
-                        onChange={onNewMessageChange}
-                        placeholder='Enter your message'></textarea></div>
-
-                    <div><button onClick={onSendMessageClick}>Send</button></div>
-                </div>
+                <AddMessageForm onSubmit={addNewMessage} />
             </div>
 
             
@@ -54,5 +44,7 @@ if(props.isAuth === false) return <Navigate to = {"/Login"} />
 
 
 }
+
+
 
 export default Dialogs;
