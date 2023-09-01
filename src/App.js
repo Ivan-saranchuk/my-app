@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import { lazy, Suspense } from 'react';
+import { Navigate } from 'react-router-dom';
+
 
 
 // import DialogsContainer from './components/Dialogs/DialogsContainer';
@@ -43,6 +45,7 @@ class App extends Component {
           <Suspense fallback={<Preloader />}>
 
             <Routes>
+            <Route path="/" element={<Navigate to="/profile" />} />
               <Route path='/dialogs/*' element={<DialogsContainer />} />
               <Route path='/profile' element={<ProfileContainer />}>
                 <Route path=":userId" element={<ProfileContainer />} />

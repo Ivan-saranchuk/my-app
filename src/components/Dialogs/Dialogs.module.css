@@ -15,3 +15,15 @@ padding: 10px;
 .messages .message{
     color: white;
 }
+
+.dialog a {
+  color: white;
+  text-decoration: none;
+}
+ .dialog a.active {
+    color: gold;
+    font-weight: bold;
+  }
+
+
+

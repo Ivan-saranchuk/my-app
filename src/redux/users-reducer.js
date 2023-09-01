@@ -16,8 +16,8 @@ let initialState = {
   pageSize: 10,
   totalUsersCount: 0,
   currentPage: 1,
-  isFetching: true,
-  followingInProgress: []
+  isFetching: true, // Крутилка
+  followingInProgress: [] // Дисейблим кнопку follow/unfollow когда уже нажата 
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -62,13 +62,13 @@ const usersReducer = (state = initialState, action) => {
 
       case TOGGLE_IS_FOLLOWING_PROGRESS:{
         return {...state, 
-          followingInProgress: action.isFetching 
+          followingInProgress: action.isFetching                       // если идет подписка и action.isFetching = true 
           
-        ? [...state.followingInProgress, action.userId]
+        ? [...state.followingInProgress, action.userId]                // добавляем в ...state.followingInProgress айди пользователя action.userId
         
-        : state.followingInProgress.filter(id => id !== action.userId)
+        : state.followingInProgress.filter(id => id !== action.userId) // иначе если идет одписка и action.isFetching = false 
+      }                                                                // удаляем всех пользователей которые не подписаны 
       
-      }
       }
 
     default:
@@ -103,7 +103,7 @@ export const getUsers = (pageNumber, currentPage, pageSize) => {
 
     let data = await usersAPI.getUsers(pageNumber, currentPage, pageSize);
    
-      dispatch(setCurrentPage(currentPage));
+      dispatch(setCurrentPage(pageNumber));
       dispatch(toggleIsFetching(false));
       dispatch(setUsers(data.items));
       dispatch(setTotalUsersCount(data.totalCount));
@@ -112,14 +112,14 @@ export const getUsers = (pageNumber, currentPage, pageSize) => {
 
 const followUnfollowFlow = async (dispatch, userId, apiMethod, actionCreator) => {
  
-  dispatch(toggleFollowingProgress(true, userId));                         
+  dispatch(toggleFollowingProgress(true, userId));  //Дисейблим кнопку в то время когда выполняется асинхронный запрос                       
    let response = await apiMethod(userId);
     
-       if (response.data.resultCode == 0){
+       if (response.data.resultCode === 0){
         dispatch(actionCreator(userId));
        }
 
-       dispatch(toggleFollowingProgress(false, userId));
+       dispatch(toggleFollowingProgress(false, userId)); //Активируем follow/unfollow кнопку когда завершается асинхронный запрос  
 } 
 
 export const follow = (userId) => {

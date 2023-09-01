@@ -7,7 +7,7 @@ import { maxLengthCreator, required } from "../../../utils/validators/validators
 
 const MyPosts = (props) => {
 
-    let postsElements = props.path.messages.map( p => <Post message={p.message} likesCount = {p.likesCount}  />)
+    let postsElements = props.path.messages.map( p => <Post key={p.id} message={p.message} likesCount = {p.likesCount}  />)
     let newPostElement = props.path.newMessageBody;
 
 

@@ -1,10 +1,5 @@
-import React from "react";
-import s from './Dialogs.module.css';
-import DialogItem from './DialogItem/DialogItem';
-import Message from './Message/Message';
 import { sendMessageCreator } from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
-import store from "../../redux/redux-store";
 import { connect } from "react-redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
@@ -35,12 +30,11 @@ import { compose } from "redux";
 let mapStateToProps = (state) => {
     return {
         path: state.dialogsReducer,
-        
     }
 }
+
 let mapDispatchToProps = (dispatch) => {
     return {
-      
         sendMessage: (newMessageBody) => {
             dispatch(sendMessageCreator(newMessageBody));
         }

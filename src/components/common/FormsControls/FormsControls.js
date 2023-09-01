@@ -1,42 +1,56 @@
 import React from "react";
 import styles from "./FormsControls.module.css";
 import { Field } from "redux-form";
-import { required } from "../../../utils/validators/validators";
 
-export const Textarea = ({ input, meta, ...props }) => {
 
-  const hasError = meta.touched && meta.error;
+// export const Textarea = ({ input, meta, ...props }) => {
 
-  return (
-    <div className={`${styles.formControl} ${hasError ? styles.error : ''}`}>
-      <div>
-        {props.types === "input" ? <input {...input} {...props} /> : <textarea {...input} {...props} />}
-      </div>
+//   const hasError = meta.touched && meta.error;
 
-      {hasError && <span className={styles.errorText}>{meta.error}</span>}
+//   return (
+//     <div className={`${styles.formControl} ${hasError ? styles.error : ''}`}>
+//       <div>
+//         {props.types === "input" ? <input {...input} {...props} /> : <textarea {...input} {...props} />}
+//       </div>
 
-    </div>
-  )
-}
+//       {hasError && <span className={styles.errorText}>{meta.error}</span>}
 
-export const Input = ({ input, meta: {touched, error}, ...props }) => {
+//     </div>
+//   )
+// }
 
+const Element = Element => ({ input, meta: {touched, error}, ...props }) => {
   const hasError = touched && error;
-
-  return(
-    <div className={`${styles.formControl} ${hasError ? styles.error : ''}`}>
-    <div>
-      {props.types === "input" ? <input {...input} {...props} /> : <textarea {...input} {...props} />}
+  return (
+    <div className={ styles.formControl + " " + (hasError ? styles.error : "") }>
+      <Element {...input} {...props} />
+      { hasError && <span> { error } </span> }
     </div>
+  );
+};
 
-    {hasError && <span className={styles.errorText}>{error}</span>}
+export const Textarea = Element("textarea");
+export const Input = Element("input");
 
-  </div>
-  )
+
+// export const Input = ({ input, meta: {touched, error}, ...props }) => {
+
+//   const hasError = touched && error;
+
+//   return(
+//     <div className={`${styles.formControl} ${hasError ? styles.error : ''}`}>
+//     <div>
+//       {props.types === "input" ? <input {...input} {...props} /> : <textarea {...input} {...props} />}
+//     </div>
+
+//     {hasError && <span className={styles.errorText}>{error}</span>}
+
+//   </div>
+//   )
  
-}
+// }
 
-export const createField = (placeholder, name, validators, component, props={}, text = " ") => (
+export const createField = (placeholder, name, validators, component, props={}, text = "") => (
   <div>
     <Field placeholder={placeholder}
       name={name}

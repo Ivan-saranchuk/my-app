@@ -36,3 +36,8 @@ export default function Stopwatch() {
     </>
   );
 }
+
+
+<div>
+  {isLoggedIn ? ( <AdminPanel />) : (<LoginForm /> )}
+</div>

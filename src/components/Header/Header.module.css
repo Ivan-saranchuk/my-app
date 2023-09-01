@@ -1,7 +1,9 @@
 
 .header{
     grid-area: h;
-    background-color: aquamarine;
+    padding: 5px;
+    border: solid 10px gray;
+    border-radius: 25px;
   }
   
   .header img{
@@ -12,5 +14,5 @@
     float: right;
   }
   .loginBlock a {
-    color: white;
+    color: rgb(0, 0, 0);
   }
