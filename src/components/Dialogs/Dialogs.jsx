@@ -4,6 +4,7 @@ import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import { Navigate } from "react-router-dom";
 import AddMessageForm from "./AddMessageForm";
+import { reset } from 'redux-form';
 
 
 
@@ -14,8 +15,9 @@ const Dialogs = (props) => {
     let messagesElements = props.path.messages.map(m => <Message message={m.message} />);
 
 
-    let addNewMessage = (values) => {
+    let addNewMessage = (values, dispatch) => {
         props.sendMessage(values.newMessageBody)
+        dispatch(reset("dialog-add-message-form")); //очищаем форму
     }
 
     if (props.isAuth === false) return <Navigate to={"/Login"} />

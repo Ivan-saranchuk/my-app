@@ -4,6 +4,7 @@ import Post from './Post/Post';
 import { Field, reduxForm } from "redux-form";
 import { Textarea } from "../../common/FormsControls/FormsControls";
 import { maxLengthCreator, required } from "../../../utils/validators/validators";
+import { reset } from 'redux-form';
 
 const MyPosts = (props) => {
 
@@ -11,9 +12,9 @@ const MyPosts = (props) => {
     let newPostElement = props.path.newMessageBody;
 
 
-   let onAddPost = (values) => {
+   let onAddPost = (values, dispatch) => {
       props.addPost(values.newPostText);
-  
+      dispatch(reset("ProfileAddNewPostForm"));
    }
    
    return (

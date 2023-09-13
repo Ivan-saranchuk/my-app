@@ -1,41 +1,8 @@
-function WarningBanner(prop){
-  if(!prop.warn){
-    return null
-  }
-  return(
-    <div className="warning">
-      warning
-    </div>
-  )
-
-}
-
-class Page extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = { showWarning: true }
-    this.handleToggleClick = this.handleToggleClick.bind(this)
-  }
-
-  handleToggleClick() {
-   this.setState (prevState => ({showWarning: !prevState.showWarning}));
-  }
+import { useState } from "react";
 
 
-  render(){
 
-    return(
-      <div>
-      <WarningBanner warn={this.state.showWarning} />
+const [state, setState] = useState(null);
 
-      <button onClick={this.handleToggleClick}>
-{this.state.showWarning ? 'Hide' : 'Show'}
-      </button>
-      </div>
-    )
-  }
- 
-  
-  
-}
+
+<input type="textarea" onChange='setState' >{state}</input>

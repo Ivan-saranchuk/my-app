@@ -3,8 +3,6 @@ import s from './Post.module.css';
 
 
 const Post = (props) => {
-
-
     return (
     <div className={s.item}>
        <img src = 'https://media.kg-portal.ru/production/avatar2/avatar2_49.jpg'></img>

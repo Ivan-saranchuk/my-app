@@ -1,43 +1,7 @@
-import { useState, useRef } from 'react';
+export function withRouter(Children){
+  return (props) => {
 
-export default function Stopwatch() {
-  const [startTime, setStartTime] = useState(null);
-  const [now, setNow] = useState(null);
-  const intervalRef = useRef(null);
-
-  function handleStart() {
-    setStartTime(Date.now()); //устанавливает метку времени старт
-    setNow(Date.now()); // устанавливает метку времени сейчас
-
-    clearInterval(intervalRef.current);
-    intervalRef.current = setInterval(() => {
-      setNow(Date.now());
-    }, 10);
+    const param = {match: useParams()};
+    return <Children {...props } param = {param} />
   }
-
-  function handleStop() {
-    clearInterval(intervalRef.current);
-  }
-
-  let secondsPassed = 0;
-  if (startTime != null && now != null) {
-    secondsPassed = (now - startTime) / 1000;
-  }
-
-  return (
-    <>
-      <h1>Time passed: {secondsPassed.toFixed(3)}</h1>
-      <button onClick={handleStart}>
-        Start
-      </button>
-      <button onClick={handleStop}>
-        Stop
-      </button>
-    </>
-  );
 }
-
-
-<div>
-  {isLoggedIn ? ( <AdminPanel />) : (<LoginForm /> )}
-</div>
