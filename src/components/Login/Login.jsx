@@ -10,10 +10,11 @@ import { createField, Input } from "../common/FormsControls/FormsControls";
 
 
 const LoginForm = ({handleSubmit, error, captchaUrl}) => {
-    return (       
-        <form onSubmit={handleSubmit}>
-          
-                {createField("Email", "email", [required, email], Input)}
+    return (    
+           
+      <form onSubmit={handleSubmit}>   {/* handleSubmit -> preventDefault -> собирает все данные формы -> props.onSubmit(formData) */}
+    
+                {createField("Email", "email", [required, email], Input)} 
                 {createField("Password", "password", [required], Input, {type: "password"})}
                 {createField(null, "rememberMe", [], "input", {type: "checkbox"}, "remember me")}
 
@@ -33,7 +34,7 @@ const LoginForm = ({handleSubmit, error, captchaUrl}) => {
         </form>
     )
    
-    
+   
 }
 
 const LoginReduxForm = reduxForm({ form: 'login'
@@ -41,7 +42,7 @@ const LoginReduxForm = reduxForm({ form: 'login'
 
 const Login = (props) => {
 
-    const onSubmit = (formData) => {
+    const onSubmit = (formData) => { // Сюда приходят все значения формы
         props.login(formData.email, formData.password, formData.rememberMe, formData.captcha)
     }
     if (props.isAuth) {
@@ -50,6 +51,7 @@ const Login = (props) => {
     return <div>
         <h1>LOGIN</h1>
         <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/>
+        <p>login: ivansaranchuk@ukr.net<br/>password: 1111</p>
     </div>
 }
 const mapStateToProps = (state) => ({

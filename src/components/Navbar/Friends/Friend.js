@@ -1,12 +1,9 @@
 import React from "react";
-import styles from "./Users.module.css";
-import userPhoto from '../../assets/images/user.png';
-import { NavLink } from "react-router-dom";
 
 
 
 
-let User = ({ user, followingInProgress, unfollow, follow,  ...props}) => {
+let Friend = ({ user, followingInProgress, unfollow, follow,  ...props}) => {
 
 
     return (
@@ -15,11 +12,7 @@ let User = ({ user, followingInProgress, unfollow, follow,  ...props}) => {
        
              
                 <span>
-                    <div>
-                        <NavLink to={'/profile/' + user.id}>
-                            <img src={user.photos.small !== null ? user.photos.small : userPhoto} className={styles.userPhoto} />
-                        </NavLink>
-                    </div>
+                
                     <div>
  
                         {user.followed ? <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => { unfollow(user.id)}}>
@@ -49,4 +42,4 @@ let User = ({ user, followingInProgress, unfollow, follow,  ...props}) => {
 
     }
 
-export default User;
+export default Friend;

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
+import Friends from './components/Navbar/Friends/Friends';
 import { lazy, Suspense } from 'react';
 import { Navigate } from 'react-router-dom';
 
@@ -40,6 +41,7 @@ class App extends Component {
       <div className='app-wrapper'>
         <HeaderContainer />
         <Navbar />
+      
         <div className='app-wrapper-content'>
 
           <Suspense fallback={<Preloader />}>
